@@ -61,3 +61,12 @@ To see the network interfaces on host :  ``` ip link ```
     link/ether b8:ce:f6:77:d7:6e brd ff:ff:ff:ff:ff:ff
 
 ```
+
+To list the interfaces within the namespace : ``` sudo ip netns exec red ip link ```
+
+```
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+```
+
+Another to that is : ``` sudo ip -n red link ```
