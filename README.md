@@ -92,8 +92,8 @@ sudo ip -n red  addr add 192.168.15.1/24 dev veth-red
 Now, bring the interface UP.
 
 ```
-sudo ip -n 1topar link set veth-red up
-sudo ip -n 2topar link set veth-blue up
+sudo ip -n red link set veth-red up
+sudo ip -n blue link set veth-blue up
 ```
 
 
