@@ -75,4 +75,11 @@ Another to that is : ``` sudo ip -n 1topar link ```
 To create virtual ethernet pairs execute : 
 ``` sudo ip link add veth-1topar type veth peer name veth-2topar ```
 
+Next step is to attach each interface to appropriate namespaces. 
+
+```
+sudo ip link set veth-1topar netns 1topar
+sudo ip link set veth-2topar netns 2topar
+```
+
 
