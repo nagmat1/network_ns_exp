@@ -69,3 +69,7 @@ To list the interfaces within the namespace : ``` sudo ip netns exec 1topar ip l
 ```
 
 Another to that is : ``` sudo ip -n 1topar link ```
+
+# Creating virtual ethernet pair. 
+
+
