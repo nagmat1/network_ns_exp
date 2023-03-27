@@ -72,4 +72,7 @@ Another to that is : ``` sudo ip -n 1topar link ```
 
 # Creating virtual ethernet pair. 
 
+To create virtual ethernet pairs execute : 
+``` sudo ip link add veth-1topar type veth peer name veth-2topar ```
+
 
