@@ -38,14 +38,14 @@ root        15  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/1]
 
 Create two namespaces : 
 ```
-sudo ip netns add 1topar
-sudo ip netns add 2topar 
+sudo ip netns add red
+sudo ip netns add blue  
 ```
 
 List the namespaces by : ```ip netns```
 ```
-2topar 
-1topar
+red  
+blue 
 ```
 
 To see the network interfaces on host :  ``` ip link ```
@@ -61,14 +61,14 @@ To see the network interfaces on host :  ``` ip link ```
     link/ether b8:ce:f6:77:d7:6e brd ff:ff:ff:ff:ff:ff
 ```
 
-To list the interfaces within the namespace : ``` sudo ip netns exec 1topar ip link ```
+To list the interfaces within the namespace : ``` sudo ip netns exec red ip link ```
 
 ```
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 ```
 
-Another to that is : ``` sudo ip -n 1topar link ```
+Another to that is : ``` sudo ip -n red link ```
 
 # Creating virtual ethernet pair. 
 
@@ -85,8 +85,8 @@ sudo ip link set veth-2topar netns 2topar
 Now we need to assign ip addresses. 
 
 ```
-sudo ip -n 2topar addr add 192.168.15.2 dev veth-2topar
-sudo ip -n 1topar addr add 192.168.15.1 dev veth-1topar
+sudo ip -n 2topar addr add 192.168.15.2/24 dev veth-2topar
+sudo ip -n 1topar addr add 192.168.15.1/24 dev veth-1topar
 ```
 
 Now, bring the interface UP.
