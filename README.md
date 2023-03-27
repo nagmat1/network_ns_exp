@@ -38,14 +38,14 @@ root        15  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/1]
 
 Create two namespaces : 
 ```
-sudo ip netns add red
-sudo ip netns add blue
+sudo ip netns add 1topar
+sudo ip netns add 2topar 
 ```
 
 List the namespaces by : ```ip netns```
 ```
-blue
-red
+2topar 
+1topar
 ```
 
 To see the network interfaces on host :  ``` ip link ```
@@ -59,7 +59,6 @@ To see the network interfaces on host :  ``` ip link ```
     link/ether 18:c0:4d:0d:a0:33 brd ff:ff:ff:ff:ff:ff
 4: enp193s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
     link/ether b8:ce:f6:77:d7:6e brd ff:ff:ff:ff:ff:ff
-
 ```
 
 To list the interfaces within the namespace : ``` sudo ip netns exec red ip link ```
