@@ -73,27 +73,27 @@ Another to that is : ``` sudo ip -n red link ```
 # Creating virtual ethernet pair. 
 
 To create virtual ethernet pairs execute : 
-``` sudo ip link add veth-1topar type veth peer name veth-2topar ```
+``` sudo ip link add veth-red type veth peer name veth-blue ```
 
 Next step is to attach each interface to appropriate namespaces. 
 
 ```
-sudo ip link set veth-1topar netns 1topar
-sudo ip link set veth-2topar netns 2topar
+sudo ip link set veth-red netns red 
+sudo ip link set veth-blue netns blue 
 ```
 
 Now we need to assign ip addresses. 
 
 ```
-sudo ip -n 2topar addr add 192.168.15.2/24 dev veth-2topar
-sudo ip -n 1topar addr add 192.168.15.1/24 dev veth-1topar
+sudo ip -n blue addr add 192.168.15.2/24 dev veth-blue
+sudo ip -n red  addr add 192.168.15.1/24 dev veth-red
 ```
 
 Now, bring the interface UP.
 
 ```
-sudo ip -n 1topar link set veth-1topar up
-sudo ip -n 2topar link set veth-2topar up
+sudo ip -n 1topar link set veth-red up
+sudo ip -n 2topar link set veth-blue up
 ```
 
 
