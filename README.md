@@ -82,4 +82,19 @@ sudo ip link set veth-1topar netns 1topar
 sudo ip link set veth-2topar netns 2topar
 ```
 
+Now we need to assign ip addresses. 
+
+```
+sudo ip -n 2topar addr add 192.168.15.2 dev veth-2topar
+sudo ip -n 1topar addr add 192.168.15.1 dev veth-1topar
+```
+
+Now, bring the interface UP.
+
+```
+sudo ip -n 1topar link set veth-1topar up
+sudo ip -n 2topar link set veth-2topar up
+```
+
+
 
