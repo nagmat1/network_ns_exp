@@ -96,5 +96,18 @@ sudo ip -n red link set veth-red up
 sudo ip -n blue link set veth-blue up
 ```
 
+Now, we can ping from red to blue :  ``` sudo ip netns exec red ping 192.168.15.2 ```
 
+```
+PING 192.168.15.2 (192.168.15.2) 56(84) bytes of data.
+64 bytes from 192.168.15.2: icmp_seq=1 ttl=64 time=0.020 ms
+64 bytes from 192.168.15.2: icmp_seq=2 ttl=64 time=0.018 ms
+64 bytes from 192.168.15.2: icmp_seq=3 ttl=64 time=0.019 ms
+64 bytes from 192.168.15.2: icmp_seq=4 ttl=64 time=0.018 ms
+^C
+--- 192.168.15.2 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3056ms
+rtt min/avg/max/mdev = 0.018/0.018/0.020/0.005 ms
+
+```
 
