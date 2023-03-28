@@ -129,3 +129,21 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 
 # Linux Bridge (virtual switches)
 
+To add new virtual switch : 
+```
+sudo ip link add v-net-0 type bridge
+```
+
+If you check ``` ip link ```
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 18:c0:4d:0d:a0:32 brd ff:ff:ff:ff:ff:ff
+3: eno2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 18:c0:4d:0d:a0:33 brd ff:ff:ff:ff:ff:ff
+4: enp193s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether b8:ce:f6:77:d7:6e brd ff:ff:ff:ff:ff:ff
+5: v-net-0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 56:e0:47:4c:69:e0 brd ff:ff:ff:ff:ff:ff
+```
