@@ -108,6 +108,24 @@ PING 192.168.15.2 (192.168.15.2) 56(84) bytes of data.
 --- 192.168.15.2 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3056ms
 rtt min/avg/max/mdev = 0.018/0.018/0.020/0.005 ms
-
 ```
+
+# Check ARP table in namespaces. 
+
+To check the arp table inside namespaces simply execute : 
+```
+sudo ip netns exec red arp
+sudo ip netns exec blue arp
+```
+
+The results would be : 
+```
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.15.2             ether   ee:de:39:8c:54:ab   C                     veth-red
+
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.15.1             ether   22:7d:5d:c4:4e:02   C                     veth-blue
+```
+
+# Linux Bridge (virtual switches)
 
