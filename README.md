@@ -160,6 +160,12 @@ State after bringing up :
 To delete a link : ``` sudo ip -n red link del veth-red ``` 
 When you delete one end, the other end deletes automatically. 
 
+Create namespaces : 
+```
+sudo ip netns add red
+sudo ip netns add blue  
+```
+
 Now we need to create cables to connect the namespace to the bridge. 
 Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
 
