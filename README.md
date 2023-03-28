@@ -147,3 +147,15 @@ If you check ``` ip link ```
 5: v-net-0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
     link/ether 56:e0:47:4c:69:e0 brd ff:ff:ff:ff:ff:ff
 ```
+
+Since the interface is down, we need to bring it up. 
+
+``` sudo ip link set dev v-net-0 up ```
+State after bringing up : 
+```
+5: v-net-0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether 56:e0:47:4c:69:e0 brd ff:ff:ff:ff:ff:ff
+```
+
+
+
