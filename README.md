@@ -157,5 +157,23 @@ State after bringing up :
     link/ether 56:e0:47:4c:69:e0 brd ff:ff:ff:ff:ff:ff
 ```
 
+To delete a link : ``` sudo ip -n red link del veth-red ``` 
+When you delete one end, the other end deletes automatically. 
+
+Now we need to create cables to connect the namespace to the bridge. 
+Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
+
+```
+sudo ip link add veth-red type veth peer name veth-red-br
+sudo ip link add veth-blue type veth peer name veth-blue-br
+```
+
+Now it's time to connect the cables to namespaces : 
+
+```
+
+```
+
+
 
 
