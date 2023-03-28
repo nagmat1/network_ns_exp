@@ -181,5 +181,10 @@ sudo ip link set veth-red-br master v-net-0
 sudo ip link set veth-blue-br master v-net-0
 ```
 
+Give the designated ip addresses : 
 
+```
+sudo ip -n red addr add 192.168.15.1 dev veth-red
+sudo ip -n blue addr add 192.168.15.2 dev veth-blue
+```
 
