@@ -174,6 +174,13 @@ sudo ip link add veth-red type veth peer name veth-red-br
 sudo ip link add veth-blue type veth peer name veth-blue-br
 ```
 
+Don't forget to bring them up : 
+```
+sudo ip link set veth-blue-br up
+sudo ip link set veth-red-br up
+
+```
+
 Now it's time to connect the cables to namespaces : 
 
 ```
@@ -199,3 +206,16 @@ Turn the interfaces up :
 sudo ip -n red link set veth-red up
 sudo ip -n blue link set veth-blue up
 ```
+
+Now, we can ping from red to blue :
+```
+sudo ip netns exec red ping 192.168.15.2 
+```
+
+```
+64 bytes from 192.168.15.2: icmp_seq=1 ttl=64 time=0.052 ms
+64 bytes from 192.168.15.2: icmp_seq=2 ttl=64 time=0.026 ms
+64 bytes from 192.168.15.2: icmp_seq=3 ttl=64 time=0.026 ms
+```
+
+
