@@ -171,9 +171,15 @@ sudo ip link add veth-blue type veth peer name veth-blue-br
 Now it's time to connect the cables to namespaces : 
 
 ```
-
+sudo ip link set veth-red netns red
+sudo ip link set veth-blue netns blue
 ```
 
+To attach the other end to the bridge network run : 
+```
+sudo ip link set veth-red-br master v-net-0
+sudo ip link set veth-blue-br master v-net-0
+```
 
 
 
