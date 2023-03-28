@@ -188,3 +188,8 @@ sudo ip -n red addr add 192.168.15.1 dev veth-red
 sudo ip -n blue addr add 192.168.15.2 dev veth-blue
 ```
 
+Turn the interfaces up : 
+```
+sudo ip -n red link set veth-red up
+sudo ip -n blue link set veth-blue up
+```
