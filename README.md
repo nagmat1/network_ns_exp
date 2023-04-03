@@ -36,13 +36,13 @@ root        14  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/0]
 root        15  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/1]
 ```
 
-Create two namespaces : 
+1. Create two namespaces : 
 ```
 sudo ip netns add red
 sudo ip netns add blue  
 ```
 
-List the namespaces by : ```ip netns```
+2. List the namespaces by : ```ip netns```
 ```
 red  
 blue 
@@ -61,7 +61,7 @@ To see the network interfaces on host :  ``` ip link ```
     link/ether b8:ce:f6:77:d7:6e brd ff:ff:ff:ff:ff:ff
 ```
 
-To list the interfaces within the namespace : ``` sudo ip netns exec red ip link ```
+3. To list the interfaces within the namespace : ``` sudo ip netns exec red ip link ```
 
 ```
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
@@ -72,31 +72,31 @@ Another to that is : ``` sudo ip -n red link ```
 
 # Creating virtual ethernet pair. 
 
-To create virtual ethernet pairs execute : 
+4. To create virtual ethernet pairs execute : 
 ``` sudo ip link add veth-red type veth peer name veth-blue ```
 
-Next step is to attach each interface to appropriate namespaces. 
+5. Next step is to attach each interface to appropriate namespaces. 
 
 ```
 sudo ip link set veth-red netns red 
 sudo ip link set veth-blue netns blue 
 ```
 
-Now we need to assign ip addresses. 
+6. Now we need to assign ip addresses. 
 
 ```
 sudo ip -n blue addr add 192.168.15.2/24 dev veth-blue
 sudo ip -n red  addr add 192.168.15.1/24 dev veth-red
 ```
 
-Now, bring the interface UP.
+7. Bring the interface UP.
 
 ```
 sudo ip -n red link set veth-red up
 sudo ip -n blue link set veth-blue up
 ```
 
-Now, we can ping from red to blue :  ``` sudo ip netns exec red ping 192.168.15.2 ```
+8. We can ping from red to blue :  ``` sudo ip netns exec red ping 192.168.15.2 ```
 
 ```
 PING 192.168.15.2 (192.168.15.2) 56(84) bytes of data.
