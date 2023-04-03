@@ -127,6 +127,12 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 192.168.15.1             ether   22:7d:5d:c4:4e:02   C                     veth-blue
 ```
 
+10. To delete a link : 
+
+```sudo ip -n red link del veth-red``` 
+
+When you delete one end, the other end deletes automatically.
+
 # Linux Bridge (virtual switches)
 
 11. To add new virtual switch : 
