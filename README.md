@@ -167,6 +167,7 @@ sudo ip netns add blue
 ```
 
 Now we need to create cables to connect the namespace to the bridge. 
+
 15. Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
 
 ```
