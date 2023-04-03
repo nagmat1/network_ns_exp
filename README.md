@@ -163,10 +163,7 @@ State after bringing up :
     link/ether 56:e0:47:4c:69:e0 brd ff:ff:ff:ff:ff:ff
 ```
 
-13. To delete a link : ``` sudo ip -n red link del veth-red ``` 
-When you delete one end, the other end deletes automatically. 
-
-14. Create namespaces : 
+13. Create namespaces : 
 ```
 sudo ip netns add red
 sudo ip netns add blue  
@@ -174,47 +171,44 @@ sudo ip netns add blue
 
 Now we need to create cables to connect the namespace to the bridge. 
 
-15. Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
-
+14. Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
 ```
 sudo ip link add veth-red type veth peer name veth-red-br
 sudo ip link add veth-blue type veth peer name veth-blue-br
 ```
 
-16. Don't forget to bring them up : 
+15. Don't forget to bring them up : 
 ```
 sudo ip link set veth-blue-br up
 sudo ip link set veth-red-br up
-
 ```
 
-17. Now it's time to connect the cables to namespaces : 
-
+16. Now it's time to connect the cables to namespaces : 
 ```
 sudo ip link set veth-red netns red
 sudo ip link set veth-blue netns blue
 ```
 
-18. To attach the other end to the bridge network run : 
+17. To attach the other end to the bridge network run : 
 ```
 sudo ip link set veth-red-br master v-net-0
 sudo ip link set veth-blue-br master v-net-0
 ```
 
-19. Give the designated ip addresses : 
+18. Give the designated ip addresses : 
 
 ```
 sudo ip -n red addr add 192.168.15.1/24 dev veth-red
 sudo ip -n blue addr add 192.168.15.2/24 dev veth-blue
 ```
 
-20. Turn the interfaces up : 
+19. Turn the interfaces up : 
 ```
 sudo ip -n red link set veth-red up
 sudo ip -n blue link set veth-blue up
 ```
 
-21. We can ping from red to blue :
+20. We can ping from red to blue :
 ```
 sudo ip netns exec red ping 192.168.15.2 
 ```
