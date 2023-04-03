@@ -165,52 +165,66 @@ State after bringing up :
 
 13. Create namespaces : 
 ```
-sudo ip netns add red
-sudo ip netns add blue  
+sudo ip netns add A
+sudo ip netns add B
+sudo ip netns add C
+sudo ip netns add D
 ```
 
 Now we need to create cables to connect the namespace to the bridge. 
 
 14. Run ip link add command and create a pair with veth-red on one end and the other end veth-red-br. It connects to bridge network. 
 ```
-sudo ip link add veth-red type veth peer name veth-red-br
-sudo ip link add veth-blue type veth peer name veth-blue-br
+sudo ip link add veth-A type veth peer name veth-A-br
+sudo ip link add veth-B type veth peer name veth-B-br
+sudo ip link add veth-C type veth peer name veth-C-br
+sudo ip link add veth-D type veth peer name veth-D-br
 ```
 
 15. Don't forget to bring them up : 
 ```
-sudo ip link set veth-blue-br up
-sudo ip link set veth-red-br up
+sudo ip link set veth-A-br up
+sudo ip link set veth-B-br up
+sudo ip link set veth-C-br up
+sudo ip link set veth-D-br up
 ```
 
 16. Now it's time to connect the cables to namespaces : 
 ```
-sudo ip link set veth-red netns red
-sudo ip link set veth-blue netns blue
+sudo ip link set veth-A netns A
+sudo ip link set veth-B netns B
+sudo ip link set veth-C netns C
+sudo ip link set veth-D netns D
 ```
 
 17. To attach the other end to the bridge network run : 
 ```
-sudo ip link set veth-red-br master v-net-0
-sudo ip link set veth-blue-br master v-net-0
+sudo ip link set veth-A-br master v-net-0
+sudo ip link set veth-B-br master v-net-0
+sudo ip link set veth-C-br master v-net-0
+sudo ip link set veth-D-br master v-net-0
 ```
 
 18. Give the designated ip addresses : 
 
 ```
-sudo ip -n red addr add 192.168.15.1/24 dev veth-red
-sudo ip -n blue addr add 192.168.15.2/24 dev veth-blue
+sudo ip -n A addr add 192.168.15.1/24 dev veth-A
+sudo ip -n B addr add 192.168.15.2/24 dev veth-B
+sudo ip -n C addr add 192.168.15.3/24 dev veth-C
+sudo ip -n D addr add 192.168.15.4/24 dev veth-D
 ```
 
 19. Turn the interfaces up : 
 ```
-sudo ip -n red link set veth-red up
-sudo ip -n blue link set veth-blue up
+sudo ip -n A link set veth-A up
+sudo ip -n B link set veth-B up
+sudo ip -n C link set veth-C up
+sudo ip -n D link set veth-D up
 ```
 
 20. We can ping from red to blue :
 ```
-sudo ip netns exec red ping 192.168.15.2 
+sudo ip netns exec A ping 192.168.15.2 
 ```
 
 ```
