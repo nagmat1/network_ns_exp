@@ -112,7 +112,7 @@ rtt min/avg/max/mdev = 0.018/0.018/0.020/0.005 ms
 
 # Check ARP table in namespaces. 
 
-To check the arp table inside namespaces simply execute : 
+9. To check the arp table inside namespaces simply execute : 
 ```
 sudo ip netns exec red arp
 sudo ip netns exec blue arp
